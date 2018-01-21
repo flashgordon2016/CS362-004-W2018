@@ -1,3 +1,4 @@
+#include "cards.h"
 #include "dominion.h"
 #include <stdio.h>
 #include "rngs.h"

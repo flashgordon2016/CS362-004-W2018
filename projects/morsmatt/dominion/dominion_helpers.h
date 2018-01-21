@@ -1,6 +1,6 @@
 #ifndef _DOMINION_HELPERS_H
 #define _DOMINION_HELPERS_H
-
+#include "cards.h"
 #include "dominion.h"
 
 int drawCard(int player, struct gameState *state);
