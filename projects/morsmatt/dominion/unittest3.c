@@ -3,7 +3,7 @@
  ## Author: Matthew G. Morse
  ## ONID: morsatt
  ## Description: Test unit for the dominion.c fullDeckCount() function. (Appears
-   on lines 1221-1256 of dominion.c)
+   on lines 325-345 of dominion.c)
 **************************************************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -18,7 +18,7 @@ void testFullDeckCount() {
   int player, i, j, passed, cardCount;
   int numPlayers = 2;
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-    sea_hag, tribute, smithy, council_room};
+              sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
 
   initializeGame(numPlayers, k, time(NULL), &G);
