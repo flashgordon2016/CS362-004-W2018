@@ -46,7 +46,7 @@ void testGetCost() {
   //Check that no card costs more than 8 coins
   passed = 1; //Test is assumed successful until proven otherwise
   for (i = -1; (i < (distinctCards + 1)) && passed == 1; i++) {
-    if (getCost(i) <= 8)
+    if (getCost(i) > 8)
       passed = 0;
   }
   if (passed == 1)
