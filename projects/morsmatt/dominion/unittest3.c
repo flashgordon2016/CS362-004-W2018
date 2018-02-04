@@ -48,12 +48,64 @@ void testFullDeckCount() {
     printf("_fullDeckCount(): FAIL assigned card count check\n");
 
   //Check that game state is not changed for players
+  //Reset game values
+  initializeGame(numPlayers, k, time(NULL), &G);
+  //Save game state
+  memcpy (&testG, G, sizeof(struct gameState));
+  //Run test with each player
+  passed = 1;
+  for (player = 0; player < numPlayers && passed; player++) {
+    for (i = 0; i < 10 && passed == 1; i++) { //Kingdom cards
+        //Run function
+        fullDeckCount(player, k[i], &testG);
+        //Compare test game state to saved version
+        //Pre and post deck comparisons for each player
+        int p, x;
+        for (p = 0; p < numPlayers && passed == 1; p++) {
+          if (G.deckCount[p] == testG.deckCount[p]) {
+            for (x = 0; x < G.deckCount[p] && passed == 1; x++) {
+              if (testG.deck[p][x] != G.deck[p][x]) {
+                passed = 0;
+              }
+            }
+          } else {
+            passed = 0;
+          }
+        }
+        //Pre and post hand comparisons for each player
+        for (p = 0; p < numPlayers && passed == 1; p++) {
+          if (G.handCount[p] == testG.handCount[p]) {
+            for (x = 0; x < G.handCount[p] && passed == 1; x++) {
+              if (testG.hand[p][x] != G.hand[p][x]) {
+                passed = 0;
+              }
+            }
+          } else {
+            passed = 0;
+          }
+        }
+        //Pre and post discard pile comparison for each player
+        for (p = 0; p < numPlayers && passed == 1; p++) {
+          if (G.discardCount[p] == testG.discardCount[p]) {
+            for (x = 0; x < G.discardCount[p] && passed == 1; x++) {
+              if (testG.discard[p][x] != G.discard[p][x]) {
+                passed = 0;
+              }
+            }
+          } else {
+            passed = 0;
+          }
+        }
+      }
+    }
+  }
+  if (passed == 1)
+    printf("_fullDeckCount(): PASS player states unchanged check\n");
+  else
+    printf("_fullDeckCount(): FAIL player states unchanged check\n");
 
-  //Check that card supply piles are not changed game
+  //Check that card supply piles are not changed
 
-  //Check that state change hasn't occurred in other supply piles
-
-  //Check that state change hasn't occured for other players
 }
 
 int main(int argc, char* argv[]) {
