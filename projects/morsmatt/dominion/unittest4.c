@@ -69,12 +69,15 @@ void testIsGameOver(){
       }
     }
   }
-  if (isGameOver(&G) == 1)
+  /*G.supplyCount[duchy] = 0;
+  G.supplyCount[k[2]] = 0;
+  G.supplyCount[gold] = 0;*/
+  if (passed == 1)
     printf("_isGameOver(): PASS 5 > players, 3 supplies piles empty\n");
   else
     printf("_isGameOver(): FAIL 5 > players, 3 supplies piles empty\n");
 
-  
+
 
 
   //Check if game ends when 4 supply piles are depleted (more than 5 players)
