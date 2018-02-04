@@ -51,7 +51,7 @@ void testFullDeckCount() {
   //Reset game values
   initializeGame(numPlayers, k, time(NULL), &G);
   //Save game state
-  memcpy (&testG, G, sizeof(struct gameState));
+  memcpy (&testG, &G, sizeof(struct gameState));
   //Run test with each player
   passed = 1;
   for (player = 0; player < numPlayers && passed; player++) {
@@ -95,10 +95,10 @@ void testFullDeckCount() {
           } else {
             passed = 0;
           }
-        }
-      }
+      	}
     }
   }
+  
   if (passed == 1)
     printf("_fullDeckCount(): PASS player states unchanged check\n");
   else
