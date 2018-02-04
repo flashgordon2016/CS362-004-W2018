@@ -98,13 +98,45 @@ void testFullDeckCount() {
       	}
     }
   }
-  
   if (passed == 1)
     printf("_fullDeckCount(): PASS player states unchanged check\n");
   else
     printf("_fullDeckCount(): FAIL player states unchanged check\n");
 
   //Check that card supply piles are not changed
+  //Reset game values
+  initializeGame(numPlayers, k, time(NULL), &G);
+  //Save game state
+  memcpy (&testG, &G, sizeof(struct gameState));
+  passed = 1;
+  for (player = 0; player < numPlayers && passed; player++) {
+    for (i = 0; i < 10 && passed == 1; i++) { //Kingdom cards
+        //Run function
+        fullDeckCount(player, k[i], &testG);
+        //Compare test game state to saved version
+        //Pre and post deck comparisons for each player
+        int p, x;
+
+        //Check that kingdom card supply counts match
+        for (x = 0; x < 10 && passed == 1; x++) {
+          if (testG.supplyCount[k[x]] != G.supplyCount[k[x]]) {
+            passed = 0;
+          }
+        }
+
+        //Check that victory and treasure card supply counts match
+        for (x = curse; x <= gold && passed == 1; x++) {
+          if (testG.supplyCount[x] != G.supplyCount[x]) {
+            passed = 0;
+          }
+        }
+    }
+  }
+  if (passed == 1)
+    printf("_fullDeckCount(): PASS supply card counts unchanged check\n");
+  else
+    printf("_fullDeckCount(): FAIL supply card counts unchanged check\n");
+
 
 }
 
