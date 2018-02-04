@@ -2,7 +2,7 @@
  ## CS362-winter2018-assignment3
  ## Author: Matthew G. Morse
  ## ONID: morsatt
- ## Description: Test unit for the dominion.c gainCard() function. (Appears
+ ## Description: Test unit for the dominion.c fullDeckCount() function. (Appears
    on lines 1221-1256 of dominion.c)
 **************************************************************************/
 #include "dominion.h"
@@ -11,50 +11,45 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <time.h>
 #include "rngs.h"
 
-void testGainCard() {
-  int i, passed;
+void testFullDeckCount() {
+  int player, i, j, passed, cardCount;
   int numPlayers = 2;
-  int k1[] = {
-   adventurer,
-   /* If no/only 1 treasure found, stop when full deck seen */
-   council_room,
-   feast, /* choice1 is supply # of card gained) */
-   gardens,
-   mine, /* choice1 is hand# of money to trash, choice2 is supply# of
-	    money to put in hand */
-   remodel, /* choice1 is hand# of card to remodel, choice2 is supply# */
-   smithy,
-   village,
+  int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+    sea_hag, tribute, smithy, council_room};
+  struct gameState G, testG;
 
-   baron, /* choice1: boolean for discard of estate */
-   /* Discard is always of first (lowest index) estate */
-   great_hall};
-  int k2[] = {
-    minion, /* choice1:  1 = +2 coin, 2 = redraw */
-    steward, /* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
-    tribute,
+  initializeGame(numPlayers, k, time(NULL), &G);
 
-    ambassador, /* choice1 = hand#, choice2 = number to return to supply */
-    cutpurse,
-    embargo, /* choice1 = supply# */
-    outpost,
-    salvager, /* choice1 = hand# to trash */
-    sea_hag,
-    treasure_map};
-    struct gameState g;
+  //Check that count matches assigned total for given card
+  passed = 1;
+  //Run test with each player
+  for (player = 0; player < numPlayers && passed; player++) {
+    for (i = 0; i < 10 && passed == 1; i++) { //Kingdom cards
+      cardCount = 0; //Tracks assigned card total for comparison
+      for (j = 0; j < 10 && passed == 1; j++) { //Add cards
+        G->deck[player][G->deckCount[player]] = k[j];
+        G->deckCount[player]++; //increment deck count
+        G->discard[player][G->discardCount[player]] = k[j];
+        G->discardCount[player]++; //increment discard pile count
+        G->hand[player][G->handCount[player]] = k[j];
+        G->handCount[player]++; //increment deck count
+        cardCount += 3;
+        if (fullDeckCount(player, k[j], &G) != cardCount)
+          passed = 0;
+      }
+    }
+  }
+  if (passed == 1)
+    printf("_getCost(): PASS assigned card count check\n");
+  else
+    printf("_getCost(): FAIL assigned card count check\n");
 
-  //Check that players can't gain a card from an empty pile
+  //Check that game state is not changed for players
 
-
-
-
-
-
-  //Check that gained card is added to the discard pile
-
-  //Check that supply is decremented when a card is gained
+  //Check that card supply piles are not changed game
 
   //Check that state change hasn't occurred in other supply piles
 

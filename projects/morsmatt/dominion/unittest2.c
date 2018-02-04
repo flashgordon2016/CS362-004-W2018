@@ -32,16 +32,10 @@ void testGetCost() {
   //Check that getCost() returns invalid value (negative) when called
   //to find non-existent card
   passed = 1;
-  if (getCost(-1) < 0 || getCost(30) < 0)
+  if (getCost(-1) < 0 && getCost(30) < 0)
     printf("_getCost(): PASS invalid card enum check\n");
   else
     printf("_getCost(): FAIL invalid card enum check\n");
-
-  //Check that the state of the players in a game is not altered by
-  //calling getCost()
-
-  //Check that the state of the supply decks is not altered by
-  //calling getCost()
 
   //Check that no card costs more than 8 coins
   passed = 1; //Test is assumed successful until proven otherwise
