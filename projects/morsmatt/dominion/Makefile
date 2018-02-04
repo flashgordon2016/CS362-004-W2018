@@ -54,4 +54,4 @@ tests.out: unittest2.c unittest3.c dominion.o rngs.o
 	gcov dominion.c >> unittestresults.out
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe tests.out
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe tests.out unittest2 unittest3

@@ -30,22 +30,22 @@ void testFullDeckCount() {
     for (i = 0; i < 10 && passed == 1; i++) { //Kingdom cards
       cardCount = 0; //Tracks assigned card total for comparison
       for (j = 0; j < 10 && passed == 1; j++) { //Add cards
-        G->deck[player][G->deckCount[player]] = k[j];
-        G->deckCount[player]++; //increment deck count
-        G->discard[player][G->discardCount[player]] = k[j];
-        G->discardCount[player]++; //increment discard pile count
-        G->hand[player][G->handCount[player]] = k[j];
-        G->handCount[player]++; //increment deck count
+        G.deck[player][G.deckCount[player]] = k[i];
+        G.deckCount[player]++; //increment deck count
+        G.discard[player][G.discardCount[player]] = k[i];
+        G.discardCount[player]++; //increment discard pile count
+        G.hand[player][G.handCount[player]] = k[i];
+        G.handCount[player]++; //increment deck count
         cardCount += 3;
-        if (fullDeckCount(player, k[j], &G) != cardCount)
+        if (fullDeckCount(player, k[i], &G) != cardCount)
           passed = 0;
       }
     }
   }
   if (passed == 1)
-    printf("_getCost(): PASS assigned card count check\n");
+    printf("_fullDeckCount(): PASS assigned card count check\n");
   else
-    printf("_getCost(): FAIL assigned card count check\n");
+    printf("_fullDeckCount(): FAIL assigned card count check\n");
 
   //Check that game state is not changed for players
 
@@ -57,6 +57,6 @@ void testFullDeckCount() {
 }
 
 int main(int argc, char* argv[]) {
-  testGainCard();
+  testFullDeckCount();
   return 0;
 }
