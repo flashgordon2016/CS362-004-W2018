@@ -13,7 +13,6 @@
 #include <assert.h>
 #include "rngs.h"
 
-int compare()
 
 void testGetCost() {
   int i, passed;
