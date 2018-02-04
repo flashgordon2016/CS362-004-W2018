@@ -33,7 +33,7 @@ void testIsGameOver(){
   //Check if game ends when 3 supply piles are depleted (less than 5 players)
   passed = 1;
   G.supplyCount[province] = 8; //reset province supply
-  for (pile1 = 0; pile1 < 17 && passed == 1; pile1++) {
+  /*for (pile1 = 0; pile1 < 17 && passed == 1; pile1++) {
     //Don't empty Province supply
     if (pile1 == 13)
       pile1 = 14;
@@ -68,11 +68,11 @@ void testIsGameOver(){
         initializeGame(numPlayers, k, time(NULL), &G);
       }
     }
-  }
-  /*G.supplyCount[duchy] = 0;
+  }*/
+  G.supplyCount[duchy] = 0;
   G.supplyCount[k[2]] = 0;
-  G.supplyCount[gold] = 0;*/
-  if (passed == 1)
+  G.supplyCount[gold] = 0;
+  if (isGameOver(&G) == 1)
     printf("_isGameOver(): PASS 5 > players, 3 supplies piles empty\n");
   else
     printf("_isGameOver(): FAIL 5 > players, 3 supplies piles empty\n");

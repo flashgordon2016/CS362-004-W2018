@@ -1,0 +1,24 @@
+Results for running dominion function tests:
+unittest2.c
+_getCost(): PASS negative cost check
+_getCost(): PASS invalid card enum check
+_getCost(): PASS maximum cost check
+File 'dominion.c'
+Lines executed:5.83% of 515
+Creating 'dominion.c.gcov'
+
+unittest3.c
+_fullDeckCount(): PASS assigned card count check
+_fullDeckCount(): PASS player states unchanged check
+_fullDeckCount(): PASS supply card counts unchanged check
+File 'dominion.c'
+Lines executed:18.64% of 515
+Creating 'dominion.c.gcov'
+
+unittest4.c
+_isGameOver(): PASS Province supply empty
+_isGameOver(): PASS 5 > players, 3 supplies piles empty
+File 'dominion.c'
+Lines executed:18.64% of 515
+Creating 'dominion.c.gcov'
+
