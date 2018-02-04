@@ -20,7 +20,7 @@ void testGetCost() {
 
   //Check that getCost() returns nonnegative values for all valid cards
   passed = 1; //Test is assumed successful until proven otherwise
-  for (int i = 0; i < distinctCards && passed == 1; i++) {
+  for (i = 0; i < distinctCards && passed == 1; i++) {
     if (getCost(i) < 0)
       passed = 0;
   }
@@ -45,7 +45,7 @@ void testGetCost() {
 
   //Check that no card costs more than 8 coins
   passed = 1; //Test is assumed successful until proven otherwise
-  for (int i = -1; (i < (distinctCards + 1)) && passed == 1; i++) {
+  for (i = -1; (i < (distinctCards + 1)) && passed == 1; i++) {
     if (getCost(i) < 0)
       passed = 0;
   }
