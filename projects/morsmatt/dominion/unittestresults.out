@@ -18,7 +18,10 @@ Creating 'dominion.c.gcov'
 unittest4.c
 _isGameOver(): PASS Province supply empty
 _isGameOver(): PASS 5 > players, 3 supplies piles empty
+_isGameOver(): FAIL 5 <= players, 3 supplies piles empty
+_isGameOver(): PASS 5 <= players, 4 supplies piles empty
+_isGameOver(): PASS supply card counts unchanged check
 File 'dominion.c'
-Lines executed:18.64% of 515
+Lines executed:19.03% of 515
 Creating 'dominion.c.gcov'
 

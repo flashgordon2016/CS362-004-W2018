@@ -12,10 +12,11 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <time.h>
 
 
 void testIsGameOver(){
-  int passed, x, numPlayers = 2;
+  int passed, i, x, numPlayers = 2;
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
@@ -40,17 +41,23 @@ void testIsGameOver(){
     printf("_isGameOver(): FAIL 5 > players, 3 supplies piles empty\n");
 
   initializeGame(5, k, time(NULL), &G); //Reset supply card values and increase player count
-  //Check if game ends when 4 supply piles are depleted (more than 5 players)
+  //Check if game continues when 3 supply piles are depleted (more than 5 players)
   G.supplyCount[estate] = 0;
   G.supplyCount[k[2]] = 0;
   G.supplyCount[curse] = 0;
-  G.supplyCount[k[6]] = 0;
+  if (isGameOver(&G) == 0)
+    printf("_isGameOver(): PASS 5 <= players, 3 supplies piles empty\n");
+  else
+    printf("_isGameOver(): FAIL 5 <= players, 3 supplies piles empty\n");
+
+  //Check if game ends when 4 supply piles are depleted (more than 5 players)
+	G.supplyCount[silver] = 0;
   if (isGameOver(&G) == 1)
     printf("_isGameOver(): PASS 5 <= players, 4 supplies piles empty\n");
   else
     printf("_isGameOver(): FAIL 5 <= players, 4 supplies piles empty\n");
-
-  //Check if running function causes change in supply card counts
+  
+	//Check if running function causes change in supply card counts
   //Reset game values
   initializeGame(numPlayers, k, time(NULL), &G);
   //Save game state
