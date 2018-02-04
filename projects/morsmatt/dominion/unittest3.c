@@ -115,8 +115,7 @@ void testFullDeckCount() {
         fullDeckCount(player, k[i], &testG);
         //Compare test game state to saved version
         //Pre and post deck comparisons for each player
-        int p, x;
-
+        int x;
         //Check that kingdom card supply counts match
         for (x = 0; x < 10 && passed == 1; x++) {
           if (testG.supplyCount[k[x]] != G.supplyCount[k[x]]) {
