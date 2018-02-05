@@ -1,7 +1,5 @@
 Results for running dominion function tests:
 unittest1.c
-Update: 15, assigned: 15
-Update: 15, assigned: 15
 _updateCoins(): PASS updateCoins() == coins assigned to hand
 _updateCoins(): PASS handCount is unchanged
 _updateCoins(): PASS hand composition is unchanged
@@ -35,4 +33,17 @@ _isGameOver(): PASS supply card counts unchanged check
 File 'dominion.c'
 Lines executed:19.03% of 515
 Creating 'dominion.c.gcov'
+
+cardtest2.c
+_smithy(): FAIL correct number of cards drawn
+_smithy(): FAIL correct number of discards
+_smithy(): PASS opposing player cards unchanged
+_smithy(): PASS supply card counts unchanged check
+File 'dominion.c'
+Lines executed:23.11% of 515
+Creating 'dominion.c.gcov'
+
+File 'cards.c'
+Lines executed:13.64% of 44
+Creating 'cards.c.gcov'
 

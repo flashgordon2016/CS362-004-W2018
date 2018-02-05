@@ -72,4 +72,4 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c\
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out\
-	testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4
+	testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 cardtest2

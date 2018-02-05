@@ -11,7 +11,7 @@
 
 int main(int argc, char* argv[]){
   int passed, player, count, i, x, numPlayers = 2, bonus = 0;
-  int choice1 = 0, choice2 = 0; choice3 = 0;
+  int choice1 = 0, choice2 = 0, choice3 = 0;
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
@@ -27,9 +27,9 @@ int main(int argc, char* argv[]){
   //Run Smithy function
   cardEffect(smithy, choice1, choice2, choice3, &testG, 0, &bonus);
   if (x + 1 == G.discardCount[player] && G.handCount[player] == count + 2)
-    printf("_smithy(): PASS correct number of discards\n");
+    printf("_smithy(): PASS correct number of cards drawn\n");
   else
-    printf("_smithy(): FAIL correct number of discards\n");
+    printf("_smithy(): FAIL correct number of cards drawn\n");
 
   //Test that 3 cards came from current player's pile
   
@@ -60,7 +60,6 @@ int main(int argc, char* argv[]){
     p = 0;
   //Run Smithy function
   cardEffect(smithy, choice1, choice2, choice3, &testG, 0, &bonus);
-  int p, x;
   if (G.deckCount[p] == testG.deckCount[p]) {
     for (x = 0; x < G.deckCount[p] && passed == 1; x++) {
       if (testG.deck[p][x] != G.deck[p][x]) {
@@ -124,4 +123,8 @@ int main(int argc, char* argv[]){
     printf("_smithy(): PASS supply card counts unchanged check\n");
   else
     printf("_smithy(): FAIL supply card counts unchanged check\n");
+	
+	return 0;
 }
+
+
