@@ -17,8 +17,7 @@
 
 
 int main(int argc, char* argv[]){
-  int passed, player, count, i, x, numPlayers = 2, bonus = 0;
-  int choice1 = 0, choice2 = 0, choice3 = 0;
+  int passed, player, x, numPlayers = 2;
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;

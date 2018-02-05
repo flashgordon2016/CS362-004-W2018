@@ -17,15 +17,14 @@
 
 
 int main(int argc, char* argv[]){
-  int passed, player, count, i, x, numPlayers = 2, bonus = 0;
-  int choice1 = 0, choice2 = 0, choice3 = 0;
+  int passed, player, x, numPlayers = 2;
   int k[10] = {adventurer, adventurer, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
   initializeGame(numPlayers, k, time(NULL), &G);
 
   //Check for infinite loop when less than 2 treasure cards are available
-  player = G.whoseTurn;
+ /* player = G.whoseTurn;
   for (i = 0; i < G.deckCount[player]; i++) { //put just one treasure in deck
     if (i > 0)
       G.deck[player][i] = smithy;
@@ -49,7 +48,7 @@ int main(int argc, char* argv[]){
     printf("_adventurer(): PASS adventurer avoids infinite loop, less 2 treasure\n");
   else
     printf("_adventurer(): PASS adventurer avoids infinite loop, less 2 treasure\n");
-
+*/
 
   //Test that card supply counts are not changed by adventurer
   //Reset game values
