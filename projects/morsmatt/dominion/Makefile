@@ -40,7 +40,8 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 ##Generates and executes all unit tests
-unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c\
+	cardtest2.c dominion.o rngs.o
 	echo "Results for running dominion function tests:" > unittestresults.out
 
 	echo "unittest1.c" >> unittestresults.out
@@ -63,6 +64,12 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o 
 	unittest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
+	echo "cardtest2.c" >> unittestresults.out
+	gcc -o cardtest2 -g dominion.c cards.c rngs.c cardtest2.c $(CFLAGS)
+	cardtest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	gcov cards.c >> unittestresults.out
+
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out\
-	testDrawCard testDrawCard.exe tests.out unittest1 unittest2 unittest3 unittest4
+	testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4
