@@ -41,35 +41,54 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 ##Generates and executes all unit tests
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c\
-	cardtest2.c dominion.o rngs.o
+	cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
 	echo "Results for running dominion function tests:" > unittestresults.out
-
+	##updateCoins() test unit
 	echo "unittest1.c" >> unittestresults.out
 	gcc -o unittest1 -g dominion.c cards.c rngs.c unittest1.c $(CFLAGS)
 	unittest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-
+	##getCost() test unit
 	echo "unittest2.c" >> unittestresults.out
 	gcc -o unittest2 -g dominion.c cards.c rngs.c unittest2.c $(CFLAGS)
 	unittest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-
+	##fullDeckCount() test unit
 	echo "unittest3.c" >> unittestresults.out
 	gcc -o unittest3 -g dominion.c cards.c rngs.c unittest3.c $(CFLAGS)
 	unittest3 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-
+	##isGameOver() test unit
 	echo "unittest4.c" >> unittestresults.out
 	gcc -o unittest4 -g dominion.c cards.c rngs.c unittest4.c $(CFLAGS)
 	unittest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-
+	##Adventurer test unit
+	echo "cardtest1.c" >> unittestresults.out
+	gcc -o cardtest1 -g dominion.c cards.c rngs.c cardtest1.c $(CFLAGS)
+	cardtest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	gcov cards.c >> unittestresults.out
+	##Smith test unit
 	echo "cardtest2.c" >> unittestresults.out
 	gcc -o cardtest2 -g dominion.c cards.c rngs.c cardtest2.c $(CFLAGS)
 	cardtest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	gcov cards.c >> unittestresults.out
+	##Outpost test unit
+	echo "cardtest3.c" >> unittestresults.out
+	gcc -o cardtest3 -g dominion.c cards.c rngs.c cardtest3.c $(CFLAGS)
+	cardtest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	gcov cards.c >> unittestresults.out
+	##Embargo test unit
+	echo "cardtest4.c" >> unittestresults.out
+	gcc -o cardtest4 -g dominion.c cards.c rngs.c cardtest4.c $(CFLAGS)
+	cardtest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	gcov cards.c >> unittestresults.out
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out\
-	testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 cardtest2
+	testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4\
+	cardtest1 cardtest2 cardtest3 cardtest4

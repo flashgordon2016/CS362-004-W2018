@@ -1,3 +1,10 @@
+/************************************************************************
+ ## CS362-winter2018-assignment3
+ ## Author: Matthew G. Morse
+ ## ONID: morsatt
+ ## Description: Test unit for the smithy cardEffect() function that was
+    refactored to cards.c. 
+**************************************************************************/
 #include "dominion.h"
 #include "cards.h" //Refactored card function implementations
 #include "dominion_helpers.h"
@@ -15,7 +22,6 @@ int main(int argc, char* argv[]){
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
-
   initializeGame(numPlayers, k, time(NULL), &G);
 
   //Test that 3 cards are added to current player's hand
@@ -32,7 +38,7 @@ int main(int argc, char* argv[]){
     printf("_smithy(): FAIL correct number of cards drawn\n");
 
   //Test that 3 cards came from current player's pile
-  
+
 
   //Test that only one card is discarded
   //Reset game values
@@ -123,8 +129,6 @@ int main(int argc, char* argv[]){
     printf("_smithy(): PASS supply card counts unchanged check\n");
   else
     printf("_smithy(): FAIL supply card counts unchanged check\n");
-	
+
 	return 0;
 }
-
-
