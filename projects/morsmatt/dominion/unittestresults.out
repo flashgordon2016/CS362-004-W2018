@@ -1,4 +1,15 @@
 Results for running dominion function tests:
+unittest1.c
+Update: 15, assigned: 15
+Update: 15, assigned: 15
+_updateCoins(): PASS updateCoins() == coins assigned to hand
+_updateCoins(): PASS handCount is unchanged
+_updateCoins(): PASS hand composition is unchanged
+_updateCoins(): PASS supply card counts unchanged
+File 'dominion.c'
+Lines executed:17.09% of 515
+Creating 'dominion.c.gcov'
+
 unittest2.c
 _getCost(): PASS negative cost check
 _getCost(): PASS invalid card enum check

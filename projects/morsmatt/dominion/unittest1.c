@@ -16,7 +16,7 @@
 
 
 void testUpdateCoins(){
-  int passed, i, x, coinTotal, numPlayers = 2;
+  int passed, coinTotal, i, x, player, numPlayers = 2;
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
               sea_hag, tribute, smithy, council_room};
   struct gameState G, testG;
@@ -29,11 +29,12 @@ void testUpdateCoins(){
   for (player = 0; player < numPlayers && passed == 1; player++) {
     coinTotal = 0;
     G.handCount[player] = handCardCount;
-    for (i = 0; i < G.handCount[player]) {
+    for (i = 0; i < G.handCount[player]; i++) {
       G.hand[player][i] = gold;
       coinTotal += 3;
     }
-    if (updateCoins(player, &G, 0) != coinTotal)
+		updateCoins(player, &G, 0); 
+    if (G.coins != coinTotal)
       passed = 0;
   }
   if (passed == 1)
