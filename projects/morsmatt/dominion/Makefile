@@ -39,5 +39,25 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
+#Generates and executes all random unit tests
+randomtestcardresults.out: randomtestcard1.c dominion.o rngs.o
+	echo "Results for running random card function tests:" > randomtestcardresults.out
+	#Smith card random test unit
+	echo "randomtestcard1.c" >> randomtestcardresults.out
+	gcc -o randomtestcard1 -g dominion.c cards.c rngs.c randomtestcard1.c $(CFLAGS)
+	randomtestcard1 >> randomtestcardresults.out
+	gcov cards.c >> randomtestcardresults.out
+	#Embargo card random test unit
+	echo "randomtestcard2.c" >> randomtestcardresults.out
+	gcc -o randomtestcard2 -g dominion.c cards.c rngs.c randomtestcard2.c $(CFLAGS)
+	randomtestcard2 >> randomtestcardresults.out
+	gcov cards.c >> randomtestcardresults.out
+	#Adventurer card random test unit
+	echo "randomtestadventurer.c" >> randomtestcardresults.out
+	gcc -o randomtestadventurer -g dominion.c cards.c rngs.c randomtestadventurer.c $(CFLAGS)
+	randomtestadventurer >> randomtestcardresults.out
+	gcov cards.c >> randomtestcardresults.out
+
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard \
+	testDrawCard.exe badTestDrawCard randomtestcard1 randomtestcard2 randomtestadventurer
