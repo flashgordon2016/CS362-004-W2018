@@ -7,8 +7,12 @@
 
 int adventurerAction(int currentPlayer, struct gameState *state, int *temphand){
 	int drawnTreasure = 0, cardDrawn, z = 0;
-	while(drawnTreasure <= 2){ //bug added here
+	//printf("Before treasure search in cards.c line 10\n");
+	int count = 0;
+	while(drawnTreasure < 2 && count < MAX_DECK){ //bug added here(removed bug: was <=)
 		//if the deck is empty we need to shuffle discard and add to deck
+		//printf("Line 13 in loop. Treasure drawn: %d, count: %d\n", drawnTreasure, count);
+		count++; //remove after debugging	
 		if (state->deckCount[currentPlayer] <1){  
 			shuffle(currentPlayer, state);
 		}
@@ -24,7 +28,11 @@ int adventurerAction(int currentPlayer, struct gameState *state, int *temphand){
 	  	z++;
 		}
   }
-  while(z-1 >= 0){
+	//Infinite loop encountered
+	if (count >= MAX_DECK)
+		return -1;
+  //printf("All treasure drawn in cards.c\n");
+	while(z-1 >= 0){
 	 	// discard all cards in play that have been drawn
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];		
 		z--;
@@ -44,9 +52,9 @@ int embargoAction(int choice1, int currentPlayer, struct gameState *state, int h
 	}
 			
   //add embargo token to selected supply pile
-  state->embargoTokens[choice1] += 2; //bug added here
-			
-  //trash card
+  state->embargoTokens[choice1] += 1; //bug added here(bug removed: added 2 before)			
+  
+	//trash card
  	discardCard(handPos, currentPlayer, state, 1);		
   return 0;
 }
@@ -67,12 +75,12 @@ int outpostAction(int currentPlayer, struct gameState *state, int handPos){
 int smithyAction(int currentPlayer, struct gameState *state, int handPos){
 	//+3 Cards
 	int i;
-  for (i = 0; i < 4; i++){ //bug added here
+  for (i = 0; i < 3; i++){ //bug added here(removed, was 4)
 	  drawCard(currentPlayer, state);
 	} 
 	//discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
-	discardCard(0, currentPlayer, state, 0); //bug added here
+	//discardCard(0, currentPlayer, state, 0); //bug added here
 	return 0;
 }
 
