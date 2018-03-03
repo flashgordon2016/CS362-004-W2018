@@ -654,7 +654,7 @@ int adventurerCard(int drawntreasure, struct gameState *state, int currentPlayer
       int z = 0; //temphand counter
       int temphand[MAX_HAND];
       int cardDrawn;
-
+			int searchCount = 0;
       while(drawntreasure<2)
       {
 	
@@ -678,6 +678,9 @@ int adventurerCard(int drawntreasure, struct gameState *state, int currentPlayer
 	  
 	  z++;
 	}
+				searchCount++;
+				if(searchCount == MAX_DECK)
+					return 1;
       }
       while(z-1>=0)
       {

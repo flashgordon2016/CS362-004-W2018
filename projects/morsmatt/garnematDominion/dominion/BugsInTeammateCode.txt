@@ -1,0 +1,7 @@
+Bugs found by random testing function:
+--Adventurer(refactored)
+	1. Infinite loop when searching for treasure
+--Smithy(refactored)
+	1. All 20,000 tests failed (unexpected change in game state)
+
+
