@@ -1,7 +1,104 @@
-Bugs found by random testing function:
---Adventurer(refactored)
-	1. Infinite loop when searching for treasure
---Smithy(refactored)
-	1. All 20,000 tests failed (unexpected change in game state)
+------------------------Bug Report #1-----------------------------
+Title: Infinite Loop in Advdenturer card function
+
+Product: dominion.c file from Matt Garner's assignment-2 branch of
+GitHub repository
+
+Classification: Serious Bug
+
+Platform: OSU Engineering Server Flip3 with shell set TCSH accessed remotely 
+using native SSH client on Mac OS Version 10.9.5
+
+Can it be reproduced? Yes, occasionally.
+
+*** Description ***
+# Summary:
+While testing the dominion.c Adventurer card function using randomized inputs, 
+the random test function spotted behavior that would indicate an infinite 
+loop had occurred with acceptable inputs.
+
+# What happened:
+The random testing function runs the Adventurer card function using randomized 
+inputs within valid ranges. The test function indicated that an infinite loop 
+occurred within the while loop of the Adventurer card function 5 times during 
+testing.
+
+# What's the error:
+Under no conditions, with valid inputs, should the Adventurer card function
+produce an infinite loop.
+
+# Supporting Information:
+This appears to happen when there are fewer than 2 treasure cards available
+in the deck and discard piles.
+
+*** Steps to Reproduce ***
+Run Adventurer() card function with less than 2 treasure cards available in the
+deck and discard piles.
+
+*** Expected Results ***
+Running the Adventurer() card function returns after searching through all available 
+cards to draw even if two treasure cards are not found.
+
+*** Actual Results ***
+Running the Adventurer() card function with with fewer than 2 treasure cards
+available to be drawn, produces an infinite loop. 
+
+*** Workaround ***
+Don't run Adventurer() card function unless at least 2 treasures are know to be in
+the deck and discard piles
+
+
+*** Contact Information ***
+# Name: Matthew Morse
+# Email: morsmatt@oregonstate.edu
+
+
+
+------------------------Bug Report #2-----------------------------
+Title: Incorrect number of cards drawn using Smithy() card function
+
+Product: dominion.c file from Matt Garner's assignment 2 branch
+
+Classification: Serious Bug
+
+Platform: OSU Engineering Server Flip3 with shell set TCSH accessed remotely 
+using native SSH client on Mac OS Version 10.9.5
+
+Can it be reproduced? Yes, every time.
+
+*** Description ***
+# Summary: 
+Running unit test for Smithy() card function causes incorrect number of 
+cards to be drawn every time it is played.
+
+# What happened:
+The unit test indicated that the number of cards drawn did not match the
+number of cards expected to be drawn.
+
+# What's the error:
+The number of cards drawn should match the expected behavior of the Smithy(), 
+but it does not.
+
+# Supporting Information:
+It appears that too many cards are being drawn rather than too few.
+
+*** Steps to Reproduce ***
+Copy state of player before playing Smithy() card and compare that to the 
+player's state after playing the Smithy() card.
+
+*** Expected Results ***
+Expected 3 cards to be drawn from the current player's deck and added to their 
+hand.
+
+*** Actual Results ***
+More than 3 cards were drawn from the current player's deck and added to their 
+hand.
+
+*** Workaround ***
+Don't use Smithy card when playing Dominion.
+
+*** Contact Information ***
+# Name: Matthew Morse
+# Email: morsmatt@oregonstate.edu
 
 

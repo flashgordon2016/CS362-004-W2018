@@ -9,7 +9,10 @@ int adventurerAction(int currentPlayer, struct gameState *state, int *temphand){
 	int drawnTreasure = 0, cardDrawn, z = 0;
 	//printf("Before treasure search in cards.c line 10\n");
 	int count = 0;
-	while(drawnTreasure < 2 && count < MAX_DECK){ //bug added here(removed bug: was <=)
+	//Get maximum number of cards to search (BUG FIX)
+	int searchLimit = state->deckCount[currentPlayer] + state->discardCount[currentPlayer];
+
+	while(drawnTreasure < 2 && count < searchLimit && count < MAX_DECK){ //bug added here(removed bug: was <=)
 		//if the deck is empty we need to shuffle discard and add to deck
 		//printf("Line 13 in loop. Treasure drawn: %d, count: %d\n", drawnTreasure, count);
 		count++; //remove after debugging	
