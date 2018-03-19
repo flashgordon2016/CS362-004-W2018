@@ -27,6 +27,7 @@
 
       public ResultPair(String item, boolean valid) {
          this.item = item;
-         this.valid = !valid;  //Weather the individual part of url is valid.
+         this.valid = valid;
+         //this.valid = !valid;  //Weather the individual part of url is valid. <----------- "Fixed" bug here
       }
    }
